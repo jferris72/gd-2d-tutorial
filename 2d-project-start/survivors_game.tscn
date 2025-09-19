@@ -21,10 +21,16 @@ offset_bottom = 1094.0
 position = Vector2(889, 542)
 
 [node name="Mob" parent="." instance=ExtResource("3_l26od")]
-position = Vector2(218, 488)
+position = Vector2(181, 491)
 
 [node name="Mob2" parent="." instance=ExtResource("3_l26od")]
 position = Vector2(1192, 134)
+
+[node name="Mob3" parent="." instance=ExtResource("3_l26od")]
+position = Vector2(1723, 804)
+
+[node name="Mob4" parent="." instance=ExtResource("3_l26od")]
+position = Vector2(750, 824)
 
 [node name="StaticBody2D" parent="." instance=ExtResource("2_l26od")]
 position = Vector2(380, 278)
