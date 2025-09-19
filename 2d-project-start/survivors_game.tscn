@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwaymhyqo8q6k"]
+[gd_scene load_steps=5 format=3 uid="uid://cwaymhyqo8q6k"]
 
+[ext_resource type="Script" uid="uid://bownk28m5yi8j" path="res://survivors_game.gd" id="1_l26od"]
 [ext_resource type="PackedScene" uid="uid://dw1atte4fiqdo" path="res://player.tscn" id="1_y3pti"]
 [ext_resource type="PackedScene" uid="uid://dn0u1yyidxcrs" path="res://pine_tree.tscn" id="2_l26od"]
-[ext_resource type="PackedScene" uid="uid://cfahohgbithjo" path="res://mob.tscn" id="3_l26od"]
+
+[sub_resource type="Curve2D" id="Curve2D_qqaft"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -124, -177, 0, 0, 0, 0, 2041, -191, 0, 0, 0, 0, 2055, 1232, 0, 0, 0, 0, -176, 1207, 0, 0, 0, 0, -124, -177)
+}
+point_count = 5
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(0, 2)
+script = ExtResource("1_l26od")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -19,18 +26,6 @@ offset_bottom = 1094.0
 
 [node name="Player" parent="." instance=ExtResource("1_y3pti")]
 position = Vector2(889, 542)
-
-[node name="Mob" parent="." instance=ExtResource("3_l26od")]
-position = Vector2(181, 491)
-
-[node name="Mob2" parent="." instance=ExtResource("3_l26od")]
-position = Vector2(1192, 134)
-
-[node name="Mob3" parent="." instance=ExtResource("3_l26od")]
-position = Vector2(1723, 804)
-
-[node name="Mob4" parent="." instance=ExtResource("3_l26od")]
-position = Vector2(750, 824)
 
 [node name="StaticBody2D" parent="." instance=ExtResource("2_l26od")]
 position = Vector2(380, 278)
@@ -52,3 +47,19 @@ position = Vector2(1536, 302)
 
 [node name="StaticBody2D7" parent="." instance=ExtResource("2_l26od")]
 position = Vector2(1497, 337)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-2.76332, 19.9129)
+scale = Vector2(1.00134, 0.983837)
+curve = SubResource("Curve2D_qqaft")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-124, -177)
+rotation = -0.00646642
+
+[node name="MobSpawnTimer" type="Timer" parent="."]
+wait_time = 0.291
+autostart = true
+
+[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]
